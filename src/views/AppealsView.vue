@@ -23,17 +23,20 @@
             </thead>
             <tbody>
                 <tr v-for="appeal in appeals" :key="appeal.number" @click="openModal(appeal)">
-                    <td>{{ appeal.number }}</td>
-                    <td>{{ appeal.created_at }}</td>
-                    <td>{{ appeal.premise }} {{ appeal.apartment }}</td>
-                    <td>{{ appeal.applicant }}</td>
-                    <td>{{ appeal.description }}</td>
-                    <td>{{ appeal.due_date }}</td>
-                    <td>{{ appeal.status }}</td>
+                    <td>{{ appeal?.number }}</td>
+                    <td>{{ appeal?.created_at }}</td>
+                    <td>{{ appeal?.premise?.address }} </td>
+                    <td>{{ appeal?.applicant?.username }}</td>
+                    <td>{{ appeal?.description }}</td>
+                    <td>{{ appeal?.due_date }}</td>
+                    <td>{{ appeal?.status?.name }}</td>
                 </tr>
             </tbody>
         </table>
-        <PagiNation :currentPage="currentPage" :totalPages="totalPages" @page-change="handlePageChange" />
+        <PagiNation
+         :currentPage="currentPage" 
+         :totalPages="totalPages" 
+         @page-change="handlePageChange" />
         <appeal-modal v-if="selectedAppeal" :appeal="selectedAppeal" @close="closeModal" />
     </div>
 </template>
@@ -68,7 +71,7 @@ export default {
                 await this.$store.dispatch("appeals/fetchAppeals", {
                     search: this.search,
                     premise: this.selectedPremise,
-                });
+                }); 
             } catch (error) {
                 console.error("Ошибка при загрузке заявок:", error);
             }

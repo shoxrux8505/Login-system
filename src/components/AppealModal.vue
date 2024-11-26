@@ -30,7 +30,7 @@ export default {
         },
         premises: {
             type: Array,
-            required: true
+            // required: true
         },
         visible: {
             type: Boolean,

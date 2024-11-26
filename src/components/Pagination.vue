@@ -26,15 +26,13 @@
   props: {
     currentPage: {
       type: Number,
-      required: true,
     },
     appeals: {
       type: Array,
-      required: true,
     },
     itemsPerPage: {
       type: Number,
-      required: true,
+
     }
   },
   computed: {
